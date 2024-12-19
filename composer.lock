@@ -4,8 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c0b58506cd7703e0cfb96631c5eb679",
+    "content-hash": "20854c1d43c9542fe106e9bf0f4d20e7",
     "packages": [
+        {
+            "name": "barbieswimcrew/zip-code-validator",
+            "version": "v3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barbieswimcrew/zip-code-validator.git",
+                "reference": "f507ef2ee467dbf37e634c3f1083c429edfd69c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barbieswimcrew/zip-code-validator/zipball/f507ef2ee467dbf37e634c3f1083c429edfd69c8",
+                "reference": "f507ef2ee467dbf37e634c3f1083c429edfd69c8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "symfony/validator": ">=4.4.40"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6 || ^10.5 || ^11.0.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZipCodeValidator\\": "src/ZipCodeValidator"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Schindler"
+                }
+            ],
+            "description": "Constraint class for international zipcode validation",
+            "keywords": [
+                "constraint",
+                "constraints",
+                "form",
+                "postal code",
+                "postalcode",
+                "symfony",
+                "validation",
+                "validator",
+                "zip code",
+                "zipcode"
+            ],
+            "support": {
+                "issues": "https://github.com/barbieswimcrew/zip-code-validator/issues",
+                "source": "https://github.com/barbieswimcrew/zip-code-validator/tree/v3.1.4"
+            },
+            "time": "2024-12-09T09:32:37+00:00"
+        },
         {
             "name": "composer/semver",
             "version": "3.4.3",
