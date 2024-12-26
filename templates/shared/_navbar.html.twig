@@ -21,11 +21,30 @@
 					<a class="nav-link" href="#">About</a>
 				</li>
 			</ul>
-						<ul class="navbar-nav">
+			<ul class="navbar-nav">
 				{% if app.user %}
-					<li class="py-2 px-2">
-						<a class="dropdown-item dropdown-user color-btn-logout" href="{{ path('app_logout') }}">Se déconnecter</a>
-					</li>
+					{# {% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item">
+							<a href="{{ path('admin') }}" class="nav-link">Administration</a>
+						</li>
+					{% endif %} #}
+					<div class="btn-group">
+						<button class="dropdown-toggle btn-dropdown-user" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+							<div
+								class="sc-gravatar">
+									Paramètres
+							</div>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-lg-end py-0">
+							<li class="py-2 px-2">
+								<a class="dropdown-item dropdown-user" href="{{path('app_profile')}}">Profil</a>
+							</li>
+							<div class="space-between"></div>
+							<li class="py-2 px-2">
+								<a class="dropdown-item dropdown-user color-btn-logout" href="{{ path('app_logout') }}">Se déconnecter</a>
+							</li>
+						</ul>
+					</div>
 				{% else %}
 					<li class="nav-item">
 						<a href="{{ path('app_login') }}" class="btn btn-primary btn-connect">Se connecter</a>
