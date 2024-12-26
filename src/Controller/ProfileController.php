@@ -20,6 +20,7 @@ class ProfileController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
+        $this->denyAccessUnlessGranted('CAN_EDIT', $user, 'Vous n\'avez pas confimé votre email');
 
         $form = $this->createForm(UpdateUserFormType::class, $user);
         $form->handleRequest($request);
@@ -47,6 +48,7 @@ class ProfileController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
+        $this->denyAccessUnlessGranted('CAN_EDIT', $user, 'Vous n\'avez pas confimé votre email');
 
         $form = $this->createForm(UpdatePasswordUserFormType::class, $user);
         $form->handleRequest($request);
