@@ -86,6 +86,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $subscriptionBeginningAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $subscriptionEndAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -267,5 +273,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setEmailAuthCode(string $authCode): void
     {
         $this->authCode = $authCode;
+    }
+
+    public function getSubscriptionBeginningAt(): ?\DateTimeImmutable
+    {
+        return $this->subscriptionBeginningAt;
+    }
+
+    public function setSubscriptionBeginningAt(?\DateTimeImmutable $subscriptionBeginningAt): static
+    {
+        $this->subscriptionBeginningAt = $subscriptionBeginningAt;
+
+        return $this;
+    }
+
+    public function getSubscriptionEndAt(): ?\DateTimeImmutable
+    {
+        return $this->subscriptionEndAt;
+    }
+
+    /**
+     * Calcul automatique de la date de fin d'abonnement (+1 an)
+     *
+     * @param \DateTimeImmutable|null $subscriptionEndAt
+     * @return static
+     */
+    public function setSubscriptionEndAt(?\DateTimeImmutable $beginningDate): static
+    {
+        // $this->subscriptionEndAt = $subscriptionEndAt;
+        $beginningDate = $this->subscriptionBeginningAt;
+        $this->subscriptionEndAt = (clone $beginningDate)->modify('+1 year');
+
+        return $this;
+    }
+
+    /**
+     * Vérifie si l'abonnement est valide
+     *
+     * @return boolean
+     */
+    public function hasValidSubscription(): bool
+    {
+        return $this->subscriptionEndAt > new \DateTimeImmutable();
     }
 }

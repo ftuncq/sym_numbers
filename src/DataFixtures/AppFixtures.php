@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -48,6 +49,7 @@ class AppFixtures extends Fixture
             // Générer un numéro de téléphone différent pour chaque utilisateur
             $rawPhoneNumber = $faker->mobileNumber();
             $phoneNumberObject = $phoneNumberUtil->parse($rawPhoneNumber, 'FR');
+            $userSubscriptionStart = DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-3 months'));
 
             $user->setEmail("user$u@gmail.com")
                 ->setFirstname($faker->firstName())
@@ -57,7 +59,9 @@ class AppFixtures extends Fixture
                 ->setCity($faker->city)
                 // ->setPhone($faker->phoneNumber())
                 ->setPhone($phoneNumberObject)
-                ->setPassword($hash);
+                ->setPassword($hash)
+                ->setSubscriptionBeginningAt($userSubscriptionStart)
+                ->setSubscriptionEndAt($userSubscriptionStart);
 
             $manager->persist($user);
             $users[] = $user;

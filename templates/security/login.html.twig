@@ -11,7 +11,7 @@
 					<h1 class="text-center mb-4 fs-4">Se connecter à l'application Sym-Numbers</h1>
 					<form method="post">
 						{% if error %}
-							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security')|raw }}</div>
 						{% endif %}
 
 						{% if app.user %}
