@@ -92,6 +92,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $subscriptionEndAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resetToken = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdTokenAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -315,5 +321,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function hasValidSubscription(): bool
     {
         return $this->subscriptionEndAt > new \DateTimeImmutable();
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): static
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getCreatedTokenAt(): ?\DateTimeImmutable
+    {
+        return $this->createdTokenAt;
+    }
+
+    public function setCreatedTokenAt(?\DateTimeImmutable $createdTokenAt): static
+    {
+        $this->createdTokenAt = $createdTokenAt;
+
+        return $this;
     }
 }
