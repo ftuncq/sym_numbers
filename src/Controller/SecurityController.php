@@ -69,7 +69,7 @@ class SecurityController extends AbstractController
                 // Envoi du mail
                 $mail->sendMail(
                     null,
-                    'Infos de l\'application elearning',
+                    'Infos de l\'application sym-numbers',
                     $user->getEmail(),
                     'Réinitialisation de mot de passe',
                     'password_reset',
